@@ -21,7 +21,38 @@ function mapGap(x) {
 module.exports = async (fastify, options) => {
 
 	fastify.get('/', {
+		schema: {
+      querystring: {
+        type: 'object',
+        properties: {
+          periode: { type: 'number' }
+        }
+      }
+    },
 		handler: async (request, reply) => {
+			let periodeId = null;
+      let periode = null;
+      if (!request.query.periode) {
+        // Find aktif periode
+        periode = await db.periode.findFirst({
+          where: {
+            aktif: true
+          }
+        })
+        if (!periode) {
+          throw new Error('There is no aktif periode')
+        }
+        periodeId = periode.id;
+      } else {
+        periodeId = parseInt(request.query.periode)
+        periode = await db.periode.findFirst({
+          where: {
+            id: periodeId
+          }
+        })
+      }
+
+			const periodeList = await db.periode.findMany({})
 
 			let kriterias = await db.kriteria.findMany({})
 			kriterias = _.sortBy(kriterias, it => it.id)
@@ -42,9 +73,23 @@ module.exports = async (fastify, options) => {
 							}
 						}
 					}
-				}
+				},
+				where: {
+          penilaians: {
+            every: {
+              subkriteriaId: {
+                gt: 0
+              }
+            },
+            every: {
+              periodeId
+            }
+          }
+        }
 			})
-			penerimaBantuanList = penerimaBantuanList.filter(it => it.penilaians.length == kriterias.length)
+
+			penerimaBantuanList = penerimaBantuanList
+				.filter(it => it.penilaians.length == kriterias.length)
 
 			const alts = penerimaBantuanList.map(m => {
 				let penilaians = m.penilaians;
@@ -99,7 +144,7 @@ module.exports = async (fastify, options) => {
 				return (0.75 * ntcf) + (ntsf * 0.25)
 			})
 
-			const items = penerimaBantuanList.map((m, i) => {
+			let items = penerimaBantuanList.map((m, i) => {
 				return {
 					...m,
 					pm_value: totalVals[i]
@@ -107,13 +152,22 @@ module.exports = async (fastify, options) => {
 			})
 
 			const itemsSorted = _.reverse(_.sortBy(items, it => it.pm_value))
-			console.log(itemsSorted)
+			items = itemsSorted.map((it, index) => {
+				return {
+					...it,
+					index: index + 1
+				}
+			})
 
 			reply.view('app/rank-result', {
 				title: 'Data Perangkingan',
 				subtitle: 'Daftar Penerima Bantuan',
 				session: request.session,
-				items: itemsSorted
+				VUE_DATA: {
+					items: items,
+					periode,
+					periodeList
+				}
 			})
 		}
 	})
