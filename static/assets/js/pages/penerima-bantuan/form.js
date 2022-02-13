@@ -54,5 +54,16 @@ Vue.createApp({
     isValid () {
       return isNoError(this.errors)
     }
+  },
+  mounted () {
+    if (VUE_DATA.payload) {
+      const p = VUE_DATA.payload
+      this.payload.nama = p.nama
+      this.payload.rt = parseInt(p.rt)
+      this.payload.rw = parseInt(p.rw)
+      this.payload.kontak = p.kontak
+      this.payload.nik = p.nik
+      this.payload.noKk = p.noKk
+    }
   }
 }).mount('#app')

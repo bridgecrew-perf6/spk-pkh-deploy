@@ -47,4 +47,21 @@ module.exports = async (fastify) => {
 		}
 	})
 
+	fastify.get('/:id/edit', {
+		handler: async (request, reply) => {
+			const id = parseInt(request.params.id)
+			const penerimaBantuan = await db.penerimaBantuan.findFirst({
+				where: { id }
+			})
+			reply.view('/app/penerima-bantuan/edit', {
+				title: 'Data Penerima Bantuan',
+				subtitle: 'Edit Penerima Bantuan',
+				session: request.session,
+				VUE_DATA: {
+					payload: penerimaBantuan
+				}
+			})
+		}
+	})
+
 }

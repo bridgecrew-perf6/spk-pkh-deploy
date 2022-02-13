@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Penerima Bantuan</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+
+        {% include "app/penerima-bantuan/form.html" %}
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/assets/js/vue.global.js"></script>
+  <script src="/static/assets/js/validation.js"></script>
+  <script src="/static/assets/js/pages/penerima-bantuan/form.js"></script>
+{% endblock %}
