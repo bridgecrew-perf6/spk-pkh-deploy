@@ -17,29 +17,18 @@
                 <label>Penerima Bantuan</label>
               </div>
               <div class="col-md-8 form-group">
-                <select 
+                <input
                   class="form-control"
-                  name="penerimaBantuanId" 
-                >
-                  {% for penerimaBantuan in penerimaBantuanList %}
-                    <option value="{{penerimaBantuan.id}}">{{ penerimaBantuan.nama }}</option>
-                  {% endfor %}
-                </select>
+                  value="{{penerimaBantuan.nama}}"
+                  readonly
+                />
               </div>
 
               <div class="col-md-4">
                 <label>Periode</label>
               </div>
               <div class="col-md-8 form-group">
-                <select class="form-control" name="periodeId">
-                  {% for periode in periodeList %}
-                    <option 
-                      {% if periode.id == aktifPeriode.id %}
-                        selected
-                      {% endif %}
-                      value="{{periode.id}}">{{ periode.tahun }}</option>
-                  {% endfor %}
-                </select>
+                <input type="number" class="form-control" value="{{periode.tahun}}" readonly />
               </div>
 
               {% for kriteria in kriteriaList %}
@@ -50,21 +39,19 @@
                   <select class="form-control" name="k_{{kriteria.id}}">
                     {% for sub in kriteria.subs %}
                       <option 
-                        value="{{sub.id}}">{{ sub.nama }}</option>
+                        value="{{sub.id}}"
+                        {% if penerimaBantuan.penilaians[sub.kriteriaId] == sub.id %}
+                          selected
+                        {% endif %}
+                      >{{ sub.nama }}</option>
                     {% endfor %}
                   </select>
                 </div>
               {% endfor %}
               
-              {% if penerimaBantuanList.length == 0 %}
-                <div class="col-12 d-grid">
-                  <h5>Maaf, tidak ada penerima bantuan yang tersedia</h5>
-                </div>
-              {% else %}
-                <div class="col-12 col-md-4 d-grid">
-                  <button type="submit" class="btn btn-primary">submit</button>
-                </div>
-              {% endif %}
+              <div class="col-12 col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
 
             </div>
           </div>

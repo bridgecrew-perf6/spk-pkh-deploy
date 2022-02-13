@@ -1,7 +1,7 @@
 function isNoError(obj) {
   for (let k of Object.keys(obj)) {
     if (obj[k]) {
-      return false;
+      return true;
     }
   }
   return false;

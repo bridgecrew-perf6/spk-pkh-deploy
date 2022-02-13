@@ -183,7 +183,91 @@ module.exports = async (fastify) => {
       }
     },
     handler: async(request, reply) => {
-      
+
+      const aktifPeriode = await db.periode.findFirst({
+        where: {
+          aktif: true
+        }
+      })
+      const kriteriaList = await db.kriteria.findMany({
+        include: {
+          subs: true
+        },
+        orderBy: {
+          'bobot': 'desc'
+        }
+      })
+
+      const penerimaBantuan = await db.penerimaBantuan.findFirst({
+        where: {
+          id: parseInt(request.params.id),
+          penilaians: {
+            every: {
+              periodeId: aktifPeriode.id
+            }
+          }
+        },
+        include: {
+          penilaians: {
+            include: {
+              subkriteria: {
+                include: {
+                  kriteria: true
+                }
+              },
+              periode: true
+            }
+          }
+        }
+      })
+
+      let temp = [ ...penerimaBantuan.penilaians ]
+      let newPenilaian = {}
+      penerimaBantuan.penilaians.forEach(it => {
+        newPenilaian[it.subkriteria.kriteriaId] = it.subkriteriaId;
+      })
+      penerimaBantuan.penilaians = newPenilaian;
+
+      return reply.view('app/penilaian/edit', {
+        title: 'Data Penilaian',
+				subtitle: 'Tambah Penilaian Penerima Bantuan',
+				session: request.session,
+        periode: aktifPeriode,
+        kriteriaList,
+        penerimaBantuan
+      })
+    }
+  })
+
+  fastify.post('/:id/edit', {
+    preHandler: upload.none(),
+    handler: async (request, reply) => {
+      const payload = request.body
+      const aktifPeriode = await db.periode.findFirst({
+        where: {
+          aktif: true
+        }
+      })
+      let penilaianList = []
+      const penerimaBantuanId = parseInt(request.params.id)
+      const periodeId = aktifPeriode.id
+      Object.keys(payload).forEach(k => {
+        penilaianList.push({
+          penerimaBantuanId,
+          periodeId,
+          subkriteriaId: parseInt(payload[k])
+        })
+      })
+      await db.penilaian.deleteMany({
+        where: {
+          penerimaBantuanId,
+          periodeId
+        }
+      })
+      await db.penilaian.createMany({
+        data: penilaianList
+      })
+      reply.redirect('/app/penilaian')
     }
   })
   
