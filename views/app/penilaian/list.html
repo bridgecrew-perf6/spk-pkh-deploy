@@ -104,6 +104,20 @@
                       {{ item.vals[k.id] }}
                     </td>
                   </template>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <a :href="`/app/periode/${item.id}/edit`" class="btn btn-primary btn-sm me-2">
+                        <i class="bi-pencil"></i>
+                      </a>
+                      <a 
+                        :href="`/app/periode/${item.id}/remove`" 
+                        onclick="return confirm('Anda akan menghapus data {{item.nama}}?')"
+                        class="btn btn-danger btn-sm me-2"
+                      >
+                        <i class="bi-trash"></i>
+                      </a>
+                    </div>
+                  </td>
                 </tr>
                 {% endraw %}
               </tbody>

@@ -109,10 +109,10 @@ model Penilaian {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  subkriteria Subkriteria @relation(fields: subkriteriaId, references: [id])
+  subkriteria Subkriteria @relation(fields: subkriteriaId, references: [id], onDelete: Cascade)
   subkriteriaId Int
 
-  penerimaBantuan   PenerimaBantuan @relation(fields: penerimaBantuanId, references: [id])
+  penerimaBantuan   PenerimaBantuan @relation(fields: penerimaBantuanId, references: [id], onDelete: Cascade)
   penerimaBantuanId Int
 
   periode Periode @relation(fields: periodeId, references: [id])
@@ -128,6 +128,6 @@ model User {
   password  String
   role Role
 
-  penerimaBantuan PenerimaBantuan? @relation(fields: penerimaBantuanId, references: [id])
+  penerimaBantuan PenerimaBantuan? @relation(fields: penerimaBantuanId, references: [id], onDelete: Cascade)
   penerimaBantuanId Int?
 }
