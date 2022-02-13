@@ -172,5 +172,19 @@ module.exports = async (fastify) => {
       reply.redirect('/app/penilaian')
     }
   })
+
+  fastify.get('/:id/edit', {
+    schema: {
+      params: {
+        type: 'object',
+        props: {
+          id: { type: 'number', required: true }
+        }
+      }
+    },
+    handler: async(request, reply) => {
+      
+    }
+  })
   
 }
