@@ -1,0 +1,95 @@
+{% extends "app/base.html" %}
+
+{% block styles %}
+  <style>
+    .list-separated > div {
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+{% endblock %}
+
+{% block actions %}
+  <h4 class="me-2" style="display: inline-block; margin: 0; padding: 0 ;">
+    <span class="badge bg-warning">status penerima: {{ mahasiswa.statusPenerima }}</span>
+  </h4>
+  {% if sessoion.user.role == 'MAHASISWA' %}
+    <a class="btn btn-primary me-2" href="/app/mahasiswa/{{ item.id }}/edit">Edit</a>
+  {% endif %}
+  <a class="btn btn-danger" href="/app/mahasiswa/{{ item.id }}/remove">Hapus</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>Biodata Mahasiswa</h3>
+            </div>
+            <div class="list-separated">
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Nama</div>
+                <h6>{{ mahasiswa.nama }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>NIK</div>
+                <h6>{{ mahasiswa.nik }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>No. Kartu Keluarga</div>
+                <h6>{{ mahasiswa.noKk }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Jenis Kelamin</div>
+                <h6>{{ mahasiswa.jk }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Alamat</div>
+                <h6>{{ mahasiswa.alamat }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Universitas</div>
+                <h6>{{ mahasiswa.universitas }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Prodi</div>
+                <h6>{{ mahasiswa.prodi }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Pendidikan</div>
+                <h6>{{ mahasiswa.pendidikan }}</h6>
+              </div>
+              <div class="py-2 d-flex justify-content-between align-items-center">
+                <div>Semester</div>
+                <h6>{{ mahasiswa.semester }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>Penilaian</h3>
+              <div class="list-separated">
+                {% for item in nilais %}
+                  <div class="py-2 d-flex justify-content-between align-items-center">
+                    <div>{{ item.label }}</div>
+                    <h6>{{ item.selected }}</h6>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary" href="/app/kriteria/create">Tambah Kriteria</a>
+{% endblock %}
+
+{% block content %}
+	<section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Tipe</th>
+                  <th>Bobot</th>
+                  <th>Profile Target</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ 'Core' if item.core else 'Secondary' }}</td>
+                    <td>{{ item.bobot }} %</td>
+                    <td>{{ item.target }}</td>
+                    <td class="text-end">
+                      <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Aksi
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin: 0px;">
+                              <a class="dropdown-item" href="/app/kriteria/{{ item.id }}/detail">Detail</a>
+                              <a class="dropdown-item" href="/app/kriteria/{{ item.id }}/edit">Edit</a>
+                              <a class="dropdown-item" href="/app/subkriteria/create?kriteria={{item.id}}">Tambah Sub</a>
+                              <a class="dropdown-item" href="/app/kriteria/{{ item.id }}/remove">Hapus</a>
+                          </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+	</section>
+{% endblock %}

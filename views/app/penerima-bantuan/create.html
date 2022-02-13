@@ -1,0 +1,150 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Penerima Bantuan</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+
+        {% raw %}
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>Nama</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  required
+                  name="nama" 
+
+                  v-bind:class="{ 'is-invalid': errors.nama }"
+                  v-model="payload.nama"
+                >
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.nama"
+                >{{ errors.nama }}</div>
+              </div>
+
+              <div class="col-md-4">
+                <label>RT</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  name="rt" 
+                  required
+                  v-bind:class="{ 'is-invalid': errors.rt }"
+                  v-model="payload.rt"
+                />
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.rt"
+                >{{ errors.rt }}</div>
+              </div>
+
+              <div class="col-md-4">
+                <label>RW</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  name="rw"
+                  required
+                  v-bind:class="{ 'is-invalid': errors.rw }"
+                  v-model="payload.rw"
+                >
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.rw"
+                >{{ errors.rw }}</div>
+              </div>
+
+              <div class="col-md-4">
+                <label>Kontak</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="kontak" 
+                  required
+                  v-model="payload.kontak"
+                  v-bind:class="{ 'is-invalid': errors.kontak }"
+                >
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.kontak"
+                >{{ errors.kontak }}</div>
+              </div>
+
+              <div class="col-md-4">
+                <label>NIK</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="nik" 
+                  required
+                  v-model="payload.nik"
+                  v-bind:class="{ 'is-invalid': errors.nik }"
+                />
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.nik"
+                >{{ errors.nik }}</div>
+              </div>
+
+              <div class="col-md-4">
+                <label>Nomor Kartu Keluarga</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="noKk" 
+                  required
+                  v-bind:class="{ 'is-invalid': errors.noKk }"
+                  v-model="payload.noKk"
+                >
+                <div 
+                  class="invalid-feedback"
+                  v-if="errors.noKk"
+                >{{ errors.noKk }}</div>
+              </div>
+
+              <div class="col-md-4 d-grid">
+                <button 
+                  :disabled="!isValid"
+                  type="submit" 
+                  class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+        {% endraw %}
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/assets/js/vue.global.js"></script>
+  <script src="/static/assets/js/validation.js"></script>
+  <script src="/static/assets/js/pages/penerima-bantuan/create.js"></script>
+{% endblock %}

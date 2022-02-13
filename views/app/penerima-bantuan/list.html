@@ -1,0 +1,47 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary" href="/app/penerima-bantuan/create">Tambah Penerima Bantuan</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>RT/RW</th>
+                  <th>Kontak</th>
+                  <th>NIK</th>
+                  <th>No.KK</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td class="fw-bold">{{ item.nama }}</td>
+                    <td>{{ item.rt }}/{{ item.rw }}</td>
+                    <td>{{ item.kontak }}</td>
+                    <td>{{ item.nik }}</td>
+                    <td>{{ item.noKk }}</td>
+                    <td class="text-end">
+                      <a href="/app/penerima-bantuan/{{ item.id }}/detail" class="btn btn-primary btn-sm me-2">detail</a>
+                      <a href="/app/penerima-bantuan/{{ item.id }}/remove" class="btn btn-danger btn-sm me-2">hapus</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

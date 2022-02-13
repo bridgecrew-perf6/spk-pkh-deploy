@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "app/inc/head.html" %}
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+  <div id="app">
+
+    <div id="main" class="layout-horizontal">
+      <header class="mb-5">
+
+        <div class="header-top">
+          <div class="container">
+            <div class="logo">
+              <a href="index.html"><img src="/static/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+            </div>
+            <div class="header-top-right">
+
+              <div class="dropdown">
+                <a href="#" class="user-dropdown d-flex dropend" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="avatar avatar-md2" >
+                    <img src="/static/assets/images/faces/1.jpg" alt="Avatar">
+                  </div>
+                  <div class="text">
+                    <h6 class="user-dropdown-name">{{ session.user.username }}</h6>
+                    <p class="user-dropdown-status text-sm text-muted">Member</p>
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">My Account</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                </ul>
+              </div>
+
+              <!-- Burger button responsive -->
+              <a href="#" class="burger-btn d-block d-xl-none">
+                <i class="bi bi-justify fs-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <nav class="main-navbar">
+            <div class="container">
+              {% if session.user.role == 'ADMIN' %}
+                {% include "app/inc/navigation-admin.html" %}
+              {% else %}
+                {% include "app/inc/navigation-penerima.html" %}
+              {% endif %}
+            </div>
+        </nav>
+
+      </header>
+
+      <div class="content-wrapper container">
+        <div class="page-heading">
+          <div class="row">
+              <div class="col-12 col-md-6 order-md-1 order-last">
+                  <h3>{{ title }}</h3>
+                  <p class="text-subtitle text-muted">{{ subtitle }}</p>
+              </div>
+              <div class="col-12 col-md-6 order-md-2 order-first d-flex justify-content-end align-items-center">
+                  {% block actions %}
+                  {% endblock %}
+              </div>
+          </div>
+        </div>
+        <div class="page-content">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <footer>
+        <div class="container">
+          <div class="footer clearfix mb-0 text-muted">
+            <div class="float-start">
+              <p>2021 &copy; Mazer</p>
+            </div>
+            <div class="float-end">
+              <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                href="http://ahmadsaugi.com">A. Saugi</a></p>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+  </div>
+</body>
+<script src="/static/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="assets/vendors/apexcharts/apexcharts.js"></script> -->
+<script src="/static/assets/js/pages/horizontal-layout.js"></script>
+
+<script>
+  {% if VUE_DATA %}
+    var VUE_DATA = {{ VUE_DATA | dump | safe }};
+  {% endif %}
+</script>
+
+{% block scripts %}
+{% endblock %}
+
+</html>

@@ -1,0 +1,68 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Penilaian</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>Penerima Bantuan</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <select class="form-control" name="penerimaBantuanId">
+                  {% for penerimaBantuan in penerimaBantuanList %}
+                    <option value="{{penerimaBantuan.id}}">{{ penerimaBantuan.nama }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label>Periode</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <select class="form-control" name="periodeId">
+                  {% for periode in periodeList %}
+                    <option 
+                      {% if periode.id == aktifPeriode.id %}
+                        selected
+                      {% endif %}
+                      value="{{periode.id}}">{{ periode.tahun }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              {% for kriteria in kriteriaList %}
+                <div class="col-md-4">
+                  <label>{{ kriteria.nama }}</label>
+                </div>
+                <div class="col-md-8 form-group">
+                  <select class="form-control" name="k_{{kriteria.id}}">
+                    {% for sub in kriteria.subs %}
+                      <option 
+                        value="{{sub.id}}">{{ sub.nama }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+
+              <div class="col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}

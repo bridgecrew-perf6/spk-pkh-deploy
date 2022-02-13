@@ -1,0 +1,122 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+{% raw %}
+  <div class="me-2" style="width: 220px;">
+    <select class="form-control" v-model="selectedPeriode" name="periode">
+      <option 
+        v-for="periode in periodeList"
+        :key="periode.id"
+        :value="periode.id"
+      >Tahun {{ periode.tahun }}</option>
+    </select>
+  </div>
+  <a class="btn btn-primary" href="/app/penilaian/create">Tambah Penilaian</a>
+{% endraw %}
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12">
+
+      <div class="card">
+        <div class="card-body">
+          {% raw %}
+          <div class="kriteria-selector">
+            <h6>Pilih Kriteria yang ditampilkan</h6>
+            <div 
+              class="d-flex align-items-center" 
+              style="flex-wrap: wrap;"
+            >
+              <div 
+                class="form-check me-2"
+                v-for="kriteria in kriteriaList"
+                :key="kriteria.id"
+              >
+                  <div class="checkbox">
+                      <input 
+                        type="checkbox" 
+                        :id="`kriteriaCheckbox-${kriteria.i}`" 
+                        class="form-check-input" 
+                        v-model="kriteria.selected"
+                      >
+                      <label 
+                        :for="`kriteriaCheckbox-${kriteria.i}`"
+                      >{{ kriteria.label }}</label>
+                  </div>
+              </div>
+            </div>
+          </div>
+          {% endraw %}
+        </div>
+      </div>
+
+      {% raw %}
+      <div class="card">
+        <div class="card-body d-flex align-items-center">
+          <div class="input-group me-3">
+            <span class="input-group-text">Total Data</span>
+            <input 
+              type="text" 
+              class="form-control form-control-sm" 
+              :value="filtered.length"
+              readonly
+            >
+        </div>
+          <div class="input-group me-3">
+              <span class="input-group-text">Pencarian</span>
+              <input 
+                type="text" 
+                class="form-control form-control-sm" 
+                placeholder="Kata kunci"
+                v-model="keyword"
+              >
+          </div>
+        </div>
+      </div>
+      {% endraw %}
+
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>Penerima Bantuan</th>
+                  {% raw %}
+                    <template
+                      v-for="k in kriteriaList"
+                      :key="`head-col-${k.id}`"
+                    >
+                      <td v-if="k.selected">{{ k.label }}</td>
+                    </template>
+                  {% endraw %}
+                </tr>
+              </thead>
+              <tbody>
+                {% raw %}
+                <tr
+                  v-for="item in filtered"
+                >
+                  <td>{{ item.nama }}</td>
+                  <template v-for="k in selectedKriteria" :key="`item-col-${item.id}-${k.id}`">
+                    <td>
+                      {{ item.vals[k.id] }}
+                    </td>
+                  </template>
+                </tr>
+                {% endraw %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/assets/js/vue.global.js"></script>
+<script src="/static/assets/js/pages/penilaian.js"></script>
+{% endblock %}

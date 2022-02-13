@@ -1,0 +1,86 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary mr-4" href="/app/kriteria/{{ item.id }}/edit">Edit</a>
+  <a class="btn btn-danger" href="/app/kriteria/{{ item.id }}/remove">Hapus</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <h4 class="card-title">Info Kriteria</h4>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>Nama Kriteria</div>
+              <div class="fw-bold">{{ item.nama }}</div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>Tipe</div>
+              <div class="fw-bold">{{ 'Core' if item.core else 'Secondary' }}</div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>Bobot</div>
+              <div class="fw-bold">{{ item.bobot }}%</div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>Profile Target</div>
+              <div class="fw-bold">{{ item.target }}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="card-title">Daftar Subkriteria</h4>
+              <a href="/app/subkriteria/create?kriteria={{item.id}}" class="btn btn-primary">Tambah Subkriteria</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Bobot</th>
+                    <th class="text-end"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for sub in item.subs %}
+                    <tr>
+                      <td>{{ sub.id }}</td>
+                      <td>{{ sub.nama }}</td>
+                      <td>{{ sub.bobot }}</td>
+                      <td class="text-end">
+                        <a class="btn btn-danger btn-sm" href="/app/subkriteria/{{sub.id}}/remove">hapus</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

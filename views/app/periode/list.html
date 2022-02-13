@@ -1,0 +1,48 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary" href="/app/periode/create">Tambah Periode</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tahun</th>
+                  <th>Aktif</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.tahun }}</td>
+                    <td>
+                      {% if item.aktif %}
+                        <i style="color: green; font-size: 2rem;" class="bi-check"/>
+                      {% else %}
+                      {% endif %}
+                    </td>
+                    <td class="text-end">
+                      <a href="/app/periode/{{ item.id }}/edit" class="btn btn-primary btn-sm me-2">edit</a>
+                      <a href="/app/periode/{{ item.id }}/remove" class="btn btn-danger btn-sm me-2">hapus</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary" href="/app/mahasiswa/create">Tambah Mahasiswa</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Pendidikan</th>
+                  <th>Penilaian</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.pendidikan }}</td>
+                    <td>
+                      <div class="rounded text-success">
+                          <svg width="2rem" height="2rem" fill="currentColor">
+                              <use xlink:href="/static/assets/vendors/bootstrap-icons/bootstrap-icons.svg#check"></use>
+                          </svg>
+                      </div>
+                    </td>
+                    <td>{{ item.statusPenerima }}</td>
+                    <td class="text-end">
+                      <a href="/app/mahasiswa/{{ item.id }}/detail" class="btn btn-primary btn-sm me-2">detail</a>
+                      <a href="/app/mahasiswa/{{ item.id }}/remove" class="btn btn-danger btn-sm me-2">hapus</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

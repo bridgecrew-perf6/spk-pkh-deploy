@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Sex {
+  PRIA
+  WANITA
+}
+
+enum JenjangPendidikan {
+  D3
+  S1
+  S2
+}
+
+enum Pekerjaan {
+  PETANI
+  SWASTA
+  PNS
+  LAIN
+}
+
+enum StatusKeluarga {
+  LENGKAP
+  YATIM_PIATU
+}
+
+enum JenisTempatTinggal {
+  RUMAH_SEDERHANA
+  RUMAH_MENENGAH
+}
+
+enum Role {
+  ADMIN
+  PENERIMA
+}
+
+enum StatusPenerima {
+  DRAFT
+  DITERIMA
+  DITOLAK
+}
+
+model Periode {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tahun Int
+  aktif Boolean @default(false)
+
+  penilaians Penilaian[]
+}
+
+model PenerimaBantuan {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profilePicture String?
+  nama String
+  rt String
+  rw String
+  kontak String
+  nik String
+  noKk String
+
+  penilaians Penilaian[]
+  user User?
+}
+
+model Kriteria {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nama String
+  core Boolean
+  bobot Decimal
+  target Int
+
+  subs  Subkriteria[]
+}
+
+model Subkriteria {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nama String
+  bobot Int
+
+  kriteria Kriteria @relation(fields: kriteriaId, references: [id])
+  kriteriaId Int 
+
+  penilaians Penilaian[]
+}
+
+model Penilaian {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subkriteria Subkriteria @relation(fields: subkriteriaId, references: [id])
+  subkriteriaId Int
+
+  penerimaBantuan   PenerimaBantuan @relation(fields: penerimaBantuanId, references: [id])
+  penerimaBantuanId Int
+
+  periode Periode @relation(fields: periodeId, references: [id])
+  periodeId Int
+}
+
+model User {
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  username String @unique
+  password  String
+  role Role
+
+  penerimaBantuan PenerimaBantuan? @relation(fields: penerimaBantuanId, references: [id])
+  penerimaBantuanId Int?
+}

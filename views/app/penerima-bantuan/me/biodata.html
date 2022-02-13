@@ -1,0 +1,82 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Penerima Bantuan</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>Nama</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" id="first-name" class="form-control" name="nama" 
+                  {% if item.nama %} value="{{item.nama}}" {% endif %}
+                  required>
+              </div>
+
+              <div class="col-md-4">
+                <label>RT</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" class="form-control" name="rt" 
+                {% if item.rt %} value="{{item.rt}}" {% endif %}
+                  required>
+              </div>
+
+              <div class="col-md-4">
+                <label>RW</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" class="form-control" name="rw" 
+                {% if item.rw %} value="{{item.rw}}" {% endif %}
+                required>
+              </div>
+
+              <div class="col-md-4">
+                <label>Kontak</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" class="form-control" name="kontak" 
+                  {% if item.kontak %} value="{{item.kontak}}" {% endif %}
+                  required>
+              </div>
+
+              <div class="col-md-4">
+                <label>NIK</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" class="form-control" name="nik" 
+                  {% if item.nik %} value="{{item.nik}}" {% endif %}
+                  required>
+              </div>
+
+              <div class="col-md-4">
+                <label>Nomor Kartu Keluarga</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" class="form-control" name="noKk" 
+                  {% if item.noKk %} value="{{item.noKk}}" {% endif %}
+                  required>
+              </div>
+
+              <div class="col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}

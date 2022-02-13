@@ -1,0 +1,62 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-6">
+    <div class="card">
+
+      <div class="card-header">
+        <h4 class="card-title">Input Data Mahasiswa</h4>
+      </div>
+
+      <div class="card-content">
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="form-label">Nama Mahasiswa</label>
+              <input type="text" class="form-control" name="nama" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nomor Induk Mahasiswa</label>
+              <input type="text" class="form-control" name="nim" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nomor Induk Kependudukan</label>
+              <input type="text" class="form-control" name="nik" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nomor Induk Kependudukan</label>
+              <input type="text" class="form-control" name="nik" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nomor KK</label>
+              <input type="text" class="form-control" name="noKk" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nomor Kontak</label>
+              <input type="text" class="form-control" name="noKontak" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Jenis Kelamin</label>
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="jk" value="PRIA">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                      Laki - Laki
+                  </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="radio" name="jk" value="WANITA">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                      Perempuan
+                  </label>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

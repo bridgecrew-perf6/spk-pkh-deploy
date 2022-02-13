@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<section class="row">
+  <div class="col-12 col-md-12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-10">
+              <h2>1. Biodata Mahasiswa</h2>
+              <h4 class="text-dark">Anda {% if session.mahasiswa %} sudah {% else %} belum {% endif %} menginput biodata</h4>
+              <p class="text-dark">Biodata yang digunakan oleh sistem kahska sds;jds sdjsd sdsd sdjs gosjds osjds sojds sodjs untuk menginput data</p>
+            </div>
+            <div class="col-12 col-md-2">
+              <a class="btn btn-primary" href="/app/mahasiswa/me-input">Input Biodata</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="col-12 col-md-12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-10">
+              <h2>2. Kriteria Perangkingan</h2>
+              <h4 class="text-dark">Anda {% if penilaianDone %} sudah {% else %} belum {% endif %} menginput biodata</h4>
+              <p class="text-dark">Biodata yang digunakan oleh sistem kahska sds;jds sdjsd sdsd sdjs gosjds osjds sojds sodjs untuk menginput data</p>
+            </div>
+            <div class="col-12 col-md-2">
+              <a class="btn btn-primary" href="/app/mahasiswa/me-penilaian">Input Penilaian</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

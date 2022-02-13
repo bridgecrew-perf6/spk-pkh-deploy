@@ -1,0 +1,54 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Periode</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>Tahun</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="number"  class="form-control" name="tahun" 
+                  value="{{ item.tahun }}"
+                  required
+                >
+              </div>
+
+              <div class="col-md-4">
+                
+              </div>
+              <div class="col-md-8">
+                <div class="form-check">
+                    <div class="checkbox">
+                        <input type="checkbox" name="aktif" class="form-check-input" 
+                          {% if item.aktif %}
+                            checked="checked"
+                          {% endif %}
+                        >
+                        <label for="checkbox1">Aktif <span class="ms-2 text-muted text-sm">(jadikan periode ini sebagai periode aktif)</span></label>
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}

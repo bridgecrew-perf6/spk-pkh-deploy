@@ -1,0 +1,39 @@
+{% extends "app/base.html" %}
+
+{% block actions %}
+  <a class="btn btn-primary me-4" href="/app/mahasiswa/create">Cetak</a>
+  <a class="btn btn-primary" href="/app/rank">Ulangi Perangkingan</a>
+{% endblock %}
+
+{% block content %}
+  <section class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama</th>
+                  <th>Nilai</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.pm_value.toFixed(4) }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

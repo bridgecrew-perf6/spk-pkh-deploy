@@ -1,0 +1,105 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Kriteria</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>Nama Kriteria</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="text" 
+                  id="first-name" 
+                  class="form-control" 
+                  name="nama" 
+                  required 
+                  value="{{item.nama}}"
+                >
+              </div>
+
+              <div class="col-md-4">
+                <label>Bobot</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="number" min="1" max="100" id="first-name" 
+                  class="form-control {% if err_bobot %} is-invalid {% endif %}" 
+                  name="bobot" 
+                  value="{{item.bobot}}" 
+                  required
+                >
+                {% if err_bobot %}
+                  <div class="invalid-feedback">
+                      <i class="bx bx-radio-circle"></i>
+                      {{ err_bobot }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-4">
+                <label>Profile Target</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input 
+                  type="number" 
+                  min="1" 
+                  max="7"
+                  class="form-control {% if err_target %} is-invalid {% endif %}" 
+                  name="target" 
+                  required
+                  value="{{item.target}}"
+                >
+                {% if err_target %}
+                  <div class="invalid-feedback">
+                      <i class="bx bx-radio-circle"></i>
+                      {{ err_target }}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-4">
+                <label>Tipe Kriteria</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="tipe" value="core" 
+                    id="flexRadioDefault2" 
+                    {% if item.core %} checked {% endif %}
+                  >
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Core
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="tipe" value="secondary" 
+                    id="flexRadioDefault2" 
+                    {% if not item.core %} checked {% endif %}
+                  >
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Secondary
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
