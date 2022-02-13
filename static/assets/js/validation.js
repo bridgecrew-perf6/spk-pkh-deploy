@@ -1,5 +1,10 @@
 function isNoError(obj) {
-  return Object.keys(obj).length == 0
+  for (let k of Object.keys(obj)) {
+    if (obj[k]) {
+      return false;
+    }
+  }
+  return false;
 }
 
 function required({ key }) {
@@ -61,18 +66,13 @@ function validation(obj, rules) {
       const ruleFuncParam = restRules[ruleKey]
 
       let isPass = false
-      let message = ''
+      let message = null
       if (ruleFuncParam === true) {
         // No params provided
         [isPass, message] = ruleFunc({ key })(targetProp)
       } else if (ruleFuncParam instanceof Object) {
         // There is our params
         [isPass, message] = ruleFunc({ ...ruleFuncParam, key })(targetProp)
-      }
-
-      if (ruleKey == 'regex') {
-        console.log(`isPass = ${isPass}`)
-        console.log(`message = ${message}`)
       }
 
       if (isPass) {

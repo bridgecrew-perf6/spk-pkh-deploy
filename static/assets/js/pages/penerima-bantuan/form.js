@@ -52,11 +52,11 @@ Vue.createApp({
       })
     },
     isValid () {
-      return isNoError(this.errors)
+      return !isNoError(this.errors)
     }
   },
   mounted () {
-    if (VUE_DATA.payload) {
+    if (VUE_DATA && VUE_DATA.payload) {
       const p = VUE_DATA.payload
       this.payload.nama = p.nama
       this.payload.rt = parseInt(p.rt)

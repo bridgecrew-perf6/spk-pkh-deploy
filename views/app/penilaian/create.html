@@ -17,7 +17,10 @@
                 <label>Penerima Bantuan</label>
               </div>
               <div class="col-md-8 form-group">
-                <select class="form-control" name="penerimaBantuanId">
+                <select 
+                  class="form-control"
+                  name="penerimaBantuanId" 
+                >
                   {% for penerimaBantuan in penerimaBantuanList %}
                     <option value="{{penerimaBantuan.id}}">{{ penerimaBantuan.nama }}</option>
                   {% endfor %}
@@ -52,10 +55,16 @@
                   </select>
                 </div>
               {% endfor %}
-
-              <div class="col-md-4 d-grid">
-                <button type="submit" class="btn btn-primary">submit</button>
-              </div>
+              
+              {% if penerimaBantuanList.length == 0 %}
+                <div class="col-12 d-grid">
+                  <h5>Maaf, tidak ada penerima bantuan yang tersedia</h5>
+                </div>
+              {% else %}
+                <div class="col-12 col-md-4 d-grid">
+                  <button type="submit" class="btn btn-primary">submit</button>
+                </div>
+              {% endif %}
 
             </div>
           </div>

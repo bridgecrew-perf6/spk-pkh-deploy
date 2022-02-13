@@ -101,6 +101,8 @@
 <script>
   {% if VUE_DATA %}
     var VUE_DATA = {{ VUE_DATA | dump | safe }};
+  {% else %}
+    var VUE_DATA = null;
   {% endif %}
 </script>
 

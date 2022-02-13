@@ -112,7 +112,6 @@ module.exports = async (fastify) => {
 
   fastify.get('/create', {
     handler: async (request, reply) => {
-      const penerimaBantuanList = await db.penerimaBantuan.findMany()
       const aktifPeriode = await db.periode.findFirst({
         where: {
           aktif: true
@@ -126,6 +125,18 @@ module.exports = async (fastify) => {
         },
         orderBy: {
           'bobot': 'desc'
+        }
+      })
+
+      const penerimaBantuanList = await db.penerimaBantuan.findMany({
+        where: {
+          penilaians: {
+            every: {
+              NOT: {
+                periodeId: aktifPeriode.id
+              }
+            }
+          }
         }
       })
 
