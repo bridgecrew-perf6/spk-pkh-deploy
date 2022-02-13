@@ -23,14 +23,14 @@ Vue.createApp({
         rt: {
           key: 'RT',
           required: true,
-          minVal: { min: 1 },
-          maxVal: { max: 40 },
+          minVal: { min: 0 },
+          maxVal: { max: 90 },
         },
         rw: {
           key: 'RW',
           required: true,
-          minVal: { min: 1 },
-          maxVal: { max: 40 },
+          minVal: { min: 0 },
+          maxVal: { max: 90 },
         },
         kontak: {
           key: 'Nomor Telepon',

@@ -64,4 +64,19 @@ module.exports = async (fastify) => {
 		}
 	})
 
+	fastify.post('/:id/edit', {
+		preHandler: upload.none(),
+		handler: async (request, reply) => {
+			const id = parseInt(request.params.id)
+			const body = request.body
+			await db.penerimaBantuan.update({
+				where: {
+					id
+				},
+				data: body
+			})
+			reply.redirect('/app/penerima-bantuan')
+		}
+	})
+
 }
