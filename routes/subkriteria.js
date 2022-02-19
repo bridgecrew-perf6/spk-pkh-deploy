@@ -49,4 +49,24 @@ module.exports = async (fastify) => {
 		}
 	})
 
+	fastify.get('/:id/edit', {
+		handler: async (request, reply) => {
+			const id = parseInt(request.params.id);
+			const item = await db.subkriteria.findFirst({
+				where: {
+					id
+				},
+				include: {
+					kriteria: true
+				}
+			});
+			reply.view('app/subkriteria/edit', {
+				title: 'Data Sub Kriteria',
+				subtitle: 'Edit data sub kriteria',
+				session: request.session,
+				item
+			})
+		}
+	})
+
 }

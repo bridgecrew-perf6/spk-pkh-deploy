@@ -1,0 +1,53 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+<section class="row">
+  <div class="col-12 col-md-12">
+   <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Input Data Sub Kriteria</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Kriteria</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" readonly class="form-control" 
+                  value="{{ item.kriteria.nama }}"
+                />
+              </div>
+
+              <div class="col-md-4">
+                <label>Nama Sub Kriteria</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="text" id="first-name" class="form-control" name="nama" required
+                  value="{{ item.nama }}"
+                >
+              </div>
+              <div class="col-md-4">
+                <label>Bobot</label>
+              </div>
+              <div class="col-md-8 form-group">
+                <input type="number" min="1" max="7" id="first-name" class="form-control" name="bobot" 
+                  value="{{ item.bobot }}"
+                  required>
+              </div>
+
+              <div class="col-md-4 d-grid">
+                <button type="submit" class="btn btn-primary">submit</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
