@@ -69,4 +69,23 @@ module.exports = async (fastify) => {
 		}
 	})
 
+	fastify.post('/:id/edit', {
+		preHandler: upload.none(),
+		handler: async (request, reply) => {
+			const subkriteriaId = parseInt(request.params.id)
+			const { nama, bobot } = request.body;
+			const payload = {
+				nama,
+				bobot: parseInt(bobot)
+			}
+			const updateResult = await db.subkriteria.update({
+				where: {
+					id: subkriteriaId
+				},
+				data: payload
+			})
+			reply.redirect(`/app/kriteria/${updateResult.kriteriaId}/detail`);
+		}
+	})
+
 }

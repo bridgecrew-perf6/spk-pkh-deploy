@@ -43,4 +43,19 @@
     </div>
   </div>
 </section>
+
+{% if penilaianDone and session.penerimaBantuan %}
+<section class="row">
+  <div class="col-12 col-md-12">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <p>Anda sudah menginput semua data yang dibutuhkan. Silahkan download bukti penginputan data</p>
+          <a target="_blank" href="/app/penerima/me/bukti-input" class="btn btn-primary btn-lg">Download Bukti Penginputan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 {% endblock %}
