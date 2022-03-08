@@ -89,15 +89,15 @@ module.exports = async (fastify) => {
 			}
 			request.session.user = user;
 			request.session.penerimaBantuan = penerimaBantuan;
-
-			reply.redirect('/app');
+			const redirectUrl = user.role == 'ADMIN' ? '/app' : '/app/penerima/me';
+			reply.redirect(redirectUrl);
 		}
 	})
 
 	fastify.get('/logout', {
 		handler: async (request, reply) => {
 			request.destroySession(() => {
-				reply.redirect('/auth/login')
+				reply.redirect('/')
 			})
 		}
 	})

@@ -13,13 +13,16 @@ module.exports = async (fastify) => {
 		handler: async (request, reply) => {
 			console.log('request.session')
 			console.log(request.session)
+			let penilaianDone = false
+			if (request.session.penerimaBantuan) {
+				const totalPenilaian = await db.penilaian.count({
+					where: {
+						penerimaBantuanId: request.session.penerimaBantuan.id
+					}
+				})
+				penilaianDone = totalPenilaian > 0
+			}
 			// Check if user has input penilaian
-			const totalPenilaian = await db.penilaian.count({
-				where: {
-					penerimaBantuanId: request.session.penerimaBantuan.id
-				}
-			})
-			const penilaianDone = totalPenilaian > 0
 
 			reply.view('app/penerima-bantuan/me/index.html', {
 				title: 'Data Penerima Bantuan',
