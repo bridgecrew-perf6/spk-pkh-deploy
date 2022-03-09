@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Struktur dari tabel `Kriteria`
 --
 
-CREATE TABLE `kriteria` (
+CREATE TABLE `Kriteria` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `kriteria`
+-- Dumping data untuk tabel `Kriteria`
 --
 
-INSERT INTO `kriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `core`, `bobot`, `target`) VALUES
+INSERT INTO `Kriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `core`, `bobot`, `target`) VALUES
 (1, '2022-02-10 18:06:27.953', '2022-02-19 16:38:37.797', 'Ada anak balita', 1, '15.000000000000000000000000000000', 6),
 (2, '2022-02-10 18:07:17.786', '2022-02-19 16:47:50.001', 'Ada ibu hamil', 1, '15.000000000000000000000000000000', 6),
 (3, '2022-02-10 18:08:20.509', '2022-02-19 16:43:03.009', 'Ada anak usia sekolah 6-18tahun', 1, '15.000000000000000000000000000000', 6),
@@ -55,10 +55,10 @@ INSERT INTO `kriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `core`, `bobot`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penerimabantuan`
+-- Struktur dari tabel `PenerimaBantuan`
 --
 
-CREATE TABLE `penerimabantuan` (
+CREATE TABLE `PenerimaBantuan` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -72,10 +72,10 @@ CREATE TABLE `penerimabantuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `penerimabantuan`
+-- Dumping data untuk tabel `PenerimaBantuan`
 --
 
-INSERT INTO `penerimabantuan` (`id`, `createdAt`, `updatedAt`, `profilePicture`, `nama`, `rt`, `rw`, `kontak`, `nik`, `noKk`) VALUES
+INSERT INTO `PenerimaBantuan` (`id`, `createdAt`, `updatedAt`, `profilePicture`, `nama`, `rt`, `rw`, `kontak`, `nik`, `noKk`) VALUES
 (10, '2022-02-11 16:37:57.518', '2022-02-11 16:37:57.519', NULL, 'Alince Ang Djali', '13', '08', '35', '6776', '557'),
 (11, '2022-02-11 16:39:05.264', '2022-02-11 16:39:05.264', NULL, 'Desy Taga Uly', '124', '04', '2243', '757', '6809'),
 (12, '2022-02-11 16:40:04.467', '2022-02-11 16:40:04.468', NULL, 'Damaris Para Era', '234', '434', '342', '456', '534'),
@@ -96,10 +96,10 @@ INSERT INTO `penerimabantuan` (`id`, `createdAt`, `updatedAt`, `profilePicture`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penilaian`
+-- Struktur dari tabel `Penilaian`
 --
 
-CREATE TABLE `penilaian` (
+CREATE TABLE `Penilaian` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE `penilaian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `penilaian`
+-- Dumping data untuk tabel `Penilaian`
 --
 
-INSERT INTO `penilaian` (`id`, `createdAt`, `updatedAt`, `subkriteriaId`, `penerimaBantuanId`, `periodeId`) VALUES
+INSERT INTO `Penilaian` (`id`, `createdAt`, `updatedAt`, `subkriteriaId`, `penerimaBantuanId`, `periodeId`) VALUES
 (37, '2022-02-11 16:58:06.108', '2022-02-11 16:58:06.109', 2, 12, 2),
 (38, '2022-02-11 16:58:06.108', '2022-02-11 16:58:06.109', 4, 12, 2),
 (39, '2022-02-11 16:58:06.108', '2022-02-11 16:58:06.109', 11, 12, 2),
@@ -261,10 +261,10 @@ INSERT INTO `penilaian` (`id`, `createdAt`, `updatedAt`, `subkriteriaId`, `pener
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `periode`
+-- Struktur dari tabel `Periode`
 --
 
-CREATE TABLE `periode` (
+CREATE TABLE `Periode` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -273,20 +273,20 @@ CREATE TABLE `periode` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `periode`
+-- Dumping data untuk tabel `Periode`
 --
 
-INSERT INTO `periode` (`id`, `createdAt`, `updatedAt`, `tahun`, `aktif`) VALUES
+INSERT INTO `Periode` (`id`, `createdAt`, `updatedAt`, `tahun`, `aktif`) VALUES
 (1, '2022-02-10 18:59:18.903', '2022-02-13 11:30:53.445', 2020, 0),
 (2, '2022-02-10 19:00:12.267', '2022-02-13 11:30:53.453', 2019, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `subkriteria`
+-- Struktur dari tabel `Subkriteria`
 --
 
-CREATE TABLE `subkriteria` (
+CREATE TABLE `Subkriteria` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -296,10 +296,10 @@ CREATE TABLE `subkriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `subkriteria`
+-- Dumping data untuk tabel `Subkriteria`
 --
 
-INSERT INTO `subkriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `bobot`, `kriteriaId`) VALUES
+INSERT INTO `Subkriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `bobot`, `kriteriaId`) VALUES
 (1, '2022-02-10 18:22:02.814', '2022-02-19 16:33:43.137', 'Ada', 6, 1),
 (2, '2022-02-10 18:22:12.481', '2022-02-19 16:34:18.685', 'Tidak', 0, 1),
 (3, '2022-02-10 18:23:54.740', '2022-02-19 16:38:11.949', 'ada', 6, 2),
@@ -336,10 +336,10 @@ INSERT INTO `subkriteria` (`id`, `createdAt`, `updatedAt`, `nama`, `bobot`, `kri
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Struktur dari tabel `User`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `User` (
   `id` int(11) NOT NULL,
   `createdAt` datetime(3) NOT NULL DEFAULT current_timestamp(3),
   `updatedAt` datetime(3) NOT NULL,
@@ -350,10 +350,10 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data untuk tabel `User`
 --
 
-INSERT INTO `user` (`id`, `createdAt`, `updatedAt`, `username`, `password`, `role`, `penerimaBantuanId`) VALUES
+INSERT INTO `User` (`id`, `createdAt`, `updatedAt`, `username`, `password`, `role`, `penerimaBantuanId`) VALUES
 (1, '2022-02-10 18:02:30.211', '2022-02-10 18:02:30.211', 'adminzero', '$2b$04$punJDg7TuLXQg/2xi0/N8.LhQIVpFn9at9eJQKKH.yPKNqdVOX.oe', 'ADMIN', NULL),
 (2, '2022-02-11 14:59:50.055', '2022-02-11 14:59:50.055', 'client01', '$2b$04$wEH0T8yyS3I1ITSRT9XgtuY/ogiK2XewFg7ruMbJjkwRM.QxWYWUO', 'PENERIMA', NULL),
 (5, '2022-02-28 15:23:57.353', '2022-03-02 15:58:50.467', 'Ama Angel', '$2b$04$mPbgz5ugvTdC4pMTcupp/.nReb9lEQDMF7xQHdwNUY/fS3gd7p0fK', 'PENERIMA', 30),
@@ -393,43 +393,43 @@ INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_na
 --
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indeks untuk tabel `Kriteria`
 --
-ALTER TABLE `kriteria`
+ALTER TABLE `Kriteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `penerimabantuan`
+-- Indeks untuk tabel `PenerimaBantuan`
 --
-ALTER TABLE `penerimabantuan`
+ALTER TABLE `PenerimaBantuan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `penilaian`
+-- Indeks untuk tabel `Penilaian`
 --
-ALTER TABLE `penilaian`
+ALTER TABLE `Penilaian`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Penilaian_periodeId_fkey` (`periodeId`),
   ADD KEY `Penilaian_penerimaBantuanId_fkey` (`penerimaBantuanId`),
   ADD KEY `Penilaian_subkriteriaId_fkey` (`subkriteriaId`);
 
 --
--- Indeks untuk tabel `periode`
+-- Indeks untuk tabel `Periode`
 --
-ALTER TABLE `periode`
+ALTER TABLE `Periode`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `subkriteria`
+-- Indeks untuk tabel `Subkriteria`
 --
-ALTER TABLE `subkriteria`
+ALTER TABLE `Subkriteria`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Subkriteria_kriteriaId_fkey` (`kriteriaId`);
 
 --
--- Indeks untuk tabel `user`
+-- Indeks untuk tabel `User`
 --
-ALTER TABLE `user`
+ALTER TABLE `User`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `User_username_key` (`username`),
   ADD UNIQUE KEY `User_penerimaBantuanId_key` (`penerimaBantuanId`);
@@ -445,39 +445,39 @@ ALTER TABLE `_prisma_migrations`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `kriteria`
+-- AUTO_INCREMENT untuk tabel `Kriteria`
 --
-ALTER TABLE `kriteria`
+ALTER TABLE `Kriteria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `penerimabantuan`
+-- AUTO_INCREMENT untuk tabel `PenerimaBantuan`
 --
-ALTER TABLE `penerimabantuan`
+ALTER TABLE `PenerimaBantuan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT untuk tabel `penilaian`
+-- AUTO_INCREMENT untuk tabel `Penilaian`
 --
-ALTER TABLE `penilaian`
+ALTER TABLE `Penilaian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
 
 --
--- AUTO_INCREMENT untuk tabel `periode`
+-- AUTO_INCREMENT untuk tabel `Periode`
 --
-ALTER TABLE `periode`
+ALTER TABLE `Periode`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `subkriteria`
+-- AUTO_INCREMENT untuk tabel `Subkriteria`
 --
-ALTER TABLE `subkriteria`
+ALTER TABLE `Subkriteria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT untuk tabel `User`
 --
-ALTER TABLE `user`
+ALTER TABLE `User`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -485,24 +485,24 @@ ALTER TABLE `user`
 --
 
 --
--- Ketidakleluasaan untuk tabel `penilaian`
+-- Ketidakleluasaan untuk tabel `Penilaian`
 --
-ALTER TABLE `penilaian`
-  ADD CONSTRAINT `Penilaian_penerimaBantuanId_fkey` FOREIGN KEY (`penerimaBantuanId`) REFERENCES `penerimabantuan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Penilaian_periodeId_fkey` FOREIGN KEY (`periodeId`) REFERENCES `periode` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `Penilaian_subkriteriaId_fkey` FOREIGN KEY (`subkriteriaId`) REFERENCES `subkriteria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Penilaian`
+  ADD CONSTRAINT `Penilaian_penerimaBantuanId_fkey` FOREIGN KEY (`penerimaBantuanId`) REFERENCES `PenerimaBantuan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Penilaian_periodeId_fkey` FOREIGN KEY (`periodeId`) REFERENCES `Periode` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Penilaian_subkriteriaId_fkey` FOREIGN KEY (`subkriteriaId`) REFERENCES `Subkriteria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `subkriteria`
+-- Ketidakleluasaan untuk tabel `Subkriteria`
 --
-ALTER TABLE `subkriteria`
-  ADD CONSTRAINT `Subkriteria_kriteriaId_fkey` FOREIGN KEY (`kriteriaId`) REFERENCES `kriteria` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `Subkriteria`
+  ADD CONSTRAINT `Subkriteria_kriteriaId_fkey` FOREIGN KEY (`kriteriaId`) REFERENCES `Kriteria` (`id`) ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user`
+-- Ketidakleluasaan untuk tabel `User`
 --
-ALTER TABLE `user`
-  ADD CONSTRAINT `User_penerimaBantuanId_fkey` FOREIGN KEY (`penerimaBantuanId`) REFERENCES `penerimabantuan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `User`
+  ADD CONSTRAINT `User_penerimaBantuanId_fkey` FOREIGN KEY (`penerimaBantuanId`) REFERENCES `PenerimaBantuan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
