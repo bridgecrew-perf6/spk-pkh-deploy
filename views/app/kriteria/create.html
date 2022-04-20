@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data" data-parsley-validate>
           <div class="form-body">
             <div class="row">
 
@@ -17,7 +17,14 @@
                 <label>Nama Kriteria</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" id="first-name" class="form-control" name="nama" required>
+                <input 
+                  type="text" 
+                  id="first-name" 
+                  class="form-control" 
+                  name="nama" 
+                  required
+                  data-parsley-minlength="6"
+                >
               </div>
 
               <div class="col-md-4">
@@ -26,7 +33,10 @@
               <div class="col-md-8 form-group">
                 <input type="number" min="1" max="100" id="first-name" 
                   class="form-control {% if err_bobot %} is-invalid {% endif %}" 
-                  name="bobot" required>
+                  name="bobot" 
+                  required
+                  data-parsley-type="integer"
+                >
                 {% if err_bobot %}
                   <div class="invalid-feedback">
                       <i class="bx bx-radio-circle"></i>
@@ -45,7 +55,9 @@
                   max="7"
                   class="form-control {% if err_target %} is-invalid {% endif %}" 
                   name="target" 
-                  required>
+                  required
+                  data-parsley-type="integer"
+                >
                 {% if err_target %}
                   <div class="invalid-feedback">
                       <i class="bx bx-radio-circle"></i>

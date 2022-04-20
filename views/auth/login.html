@@ -8,7 +8,7 @@
 
   <p class="auth-subtitle mb-5">Login Kedalam Sistem</p>
 
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data" data-parsley-validate>
 
     <div class="form-group position-relative has-icon-left mb-4">
       <input 
@@ -16,6 +16,9 @@
         class="form-control form-control-xl {% if err_username %} is-invalid {% endif %}" 
         placeholder="Username" 
         name="username"
+        required
+        data-parsley-pattern="^[a-zA-Z ][a-zA-Z1-9 ]+$"
+        data-parsley-minlength=5
       >
       <div class="form-control-icon">
         <i class="bi bi-person"></i>
@@ -29,9 +32,14 @@
     </div>
 
     <div class="form-group position-relative has-icon-left mb-4">
-      <input type="password" 
+      <input 
+        type="password" 
         class="form-control form-control-xl {% if err_password %} is-invalid {% endif %}" 
-        placeholder="Password" name="password">
+        placeholder="Password" 
+        name="password"
+        data-parsley-minlength="6"
+        required
+      >
       <div class="form-control-icon">
         <i class="bi bi-shield-lock"></i>
       </div>

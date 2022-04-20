@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data" data-parsley-validate>
           <div class="form-body">
             <div class="row">
 
@@ -17,18 +17,28 @@
                 <label>Nama</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" id="first-name" class="form-control" name="nama" 
+                <input 
+                  type="text" 
+                  id="first-name" 
+                  class="form-control" 
+                  name="nama" 
                   {% if item.nama %} value="{{item.nama}}" {% endif %}
-                  required>
+                  required
+                  data-parsley-minlength="6"
+                >
               </div>
 
               <div class="col-md-4">
                 <label>RT</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" class="form-control" name="rt" 
-                {% if item.rt %} value="{{item.rt}}" {% endif %}
-                  required>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="rt" 
+                  {% if item.rt %} value="{{item.rt}}" {% endif %}
+                  required
+                >
               </div>
 
               <div class="col-md-4">
@@ -44,27 +54,46 @@
                 <label>Kontak</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" class="form-control" name="kontak" 
+                <input 
+                  type="text"
+                  class="form-control"
+                  name="kontak"
                   {% if item.kontak %} value="{{item.kontak}}" {% endif %}
-                  required>
+                  data-parsley-pattern="(\\+62|62|0)8[1-9][0-9]{6,9}"
+                  required
+                >
               </div>
 
               <div class="col-md-4">
                 <label>NIK</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" class="form-control" name="nik" 
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="nik" 
                   {% if item.nik %} value="{{item.nik}}" {% endif %}
-                  required>
+                  required
+                  data-parsley-maxlength="16"
+                  data-parsley-minlength="16"
+                  data-parsley-pattern="^[0-9]+$"
+                >
               </div>
 
               <div class="col-md-4">
                 <label>Nomor Kartu Keluarga</label>
               </div>
               <div class="col-md-8 form-group">
-                <input type="text" class="form-control" name="noKk" 
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="noKk" 
                   {% if item.noKk %} value="{{item.noKk}}" {% endif %}
-                  required>
+                  required
+                  data-parsley-maxlength="16"
+                  data-parsley-minlength="16"
+                  data-parsley-pattern="^[0-9]+$"
+                >
               </div>
 
               <div class="col-md-4 d-grid">
@@ -79,4 +108,21 @@
   </div>
 </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    window.Parsley
+      .addValidator('nik', {
+        requirementType: 'string',
+        validateString: function(value, requirement) {
+          const pass = document.getElementById('password').value;
+          return pass == value;
+        },
+        messages: {
+          en: 'password tidak cocok',
+          id: 'password tidak cocok'
+        }
+      });
+  </script>
 {% endblock %}

@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data" data-parsley-validate>
           <div class="form-body">
             <div class="row">
               <div class="col-md-4">
@@ -27,6 +27,8 @@
               <div class="col-md-8 form-group">
                 <input type="text" id="first-name" class="form-control" name="nama" required
                   value="{{ item.nama }}"
+                  required
+                  data-parsley-minlength="6"
                 >
               </div>
               <div class="col-md-4">
@@ -35,7 +37,9 @@
               <div class="col-md-8 form-group">
                 <input type="number" min="0" max="6" id="first-name" class="form-control" name="bobot" 
                   value="{{ item.bobot }}"
-                  required>
+                  required
+                  data-parsley-type="integer"
+                >
               </div>
 
               <div class="col-md-4 d-grid">

@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data" data-parsley-validate>
           <div class="form-body">
             <div class="row">
 
@@ -20,6 +20,9 @@
                 <input type="number"  class="form-control" name="tahun" 
                   value="{{ item.tahun }}"
                   required
+                  min="2017"
+                  max="9999"
+                  data-parsley-min="2017"
                 >
               </div>
 

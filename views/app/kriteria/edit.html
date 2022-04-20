@@ -9,7 +9,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-        <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+        <form class="form form-horizontal" method="post" enctype="multipart/form-data" data-parsley-validate>
           <div class="form-body">
             <div class="row">
 
@@ -24,6 +24,8 @@
                   name="nama" 
                   required 
                   value="{{item.nama}}"
+                  required
+                  data-parsley-minlength="6"
                 >
               </div>
 
@@ -36,6 +38,7 @@
                   name="bobot" 
                   value="{{item.bobot}}" 
                   required
+                  data-parsley-type="integer"
                 >
                 {% if err_bobot %}
                   <div class="invalid-feedback">
@@ -56,6 +59,7 @@
                   class="form-control {% if err_target %} is-invalid {% endif %}" 
                   name="target" 
                   required
+                  data-parsley-type="integer"
                   value="{{item.target}}"
                 >
                 {% if err_target %}
