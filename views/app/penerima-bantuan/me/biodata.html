@@ -38,6 +38,10 @@
                   name="rt" 
                   {% if item.rt %} value="{{item.rt}}" {% endif %}
                   required
+                  data-parsley-type="integer"
+                  data-parsley-type-message="input tidak valid. harus angka"
+                  data-parsley-min="1"
+                  data-parsley-max="99"
                 >
               </div>
 
@@ -47,6 +51,10 @@
               <div class="col-md-8 form-group">
                 <input type="text" class="form-control" name="rw" 
                 {% if item.rw %} value="{{item.rw}}" {% endif %}
+                data-parsley-type="integer"
+                data-parsley-type-message="input tidak valid. harus angka"
+                data-parsley-min="1"
+                data-parsley-max="99"
                 required>
               </div>
 
